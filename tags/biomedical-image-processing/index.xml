@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Biomedical Image Processing | Homepage | Rafid</title>
+    <link>https://abyaadrafid.github.io/tags/biomedical-image-processing/</link>
+      <atom:link href="https://abyaadrafid.github.io/tags/biomedical-image-processing/index.xml" rel="self" type="application/rss+xml" />
+    <description>Biomedical Image Processing</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0600</lastBuildDate>
+    <image>
+      <url>https://abyaadrafid.github.io/img/icon-192.png</url>
+      <title>Biomedical Image Processing</title>
+      <link>https://abyaadrafid.github.io/tags/biomedical-image-processing/</link>
+    </image>
+    
+    <item>
+      <title>Recursion Cellular Image Classification</title>
+      <link>https://abyaadrafid.github.io/project/rcic/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/project/rcic/</guid>
+      <description>&lt;form action=&#34;https://github.com/abyaadrafid/Recursion-Cellular-Image-Classification&#34;&gt;
+    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
+&lt;/form&gt;</description>
+    </item>
+    
+    <item>
+      <title>SIIM-ACR Pneumothorax Segmentation</title>
+      <link>https://abyaadrafid.github.io/project/siim-acr/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/project/siim-acr/</guid>
+      <description>&lt;form action=&#34;https://github.com/abyaadrafid/SIIM-ACR-Pneumothorax-Segmentation&#34;&gt;
+    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
+&lt;/form&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

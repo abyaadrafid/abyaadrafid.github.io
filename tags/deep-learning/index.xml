@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Homepage | Rafid</title>
-    <link>https://abyaadrafid.github.io/</link>
-      <atom:link href="https://abyaadrafid.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <description>Homepage | Rafid</description>
+    <title>Deep Learning | Homepage | Rafid</title>
+    <link>https://abyaadrafid.github.io/tags/deep-learning/</link>
+      <atom:link href="https://abyaadrafid.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Deep Learning</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0600</lastBuildDate>
     <image>
       <url>https://abyaadrafid.github.io/img/icon-192.png</url>
-      <title>Homepage | Rafid</title>
-      <link>https://abyaadrafid.github.io/</link>
+      <title>Deep Learning</title>
+      <link>https://abyaadrafid.github.io/tags/deep-learning/</link>
     </image>
     
     <item>
@@ -287,26 +287,6 @@ Conv1d is applied on lstm output, which goes into a maxpool. GRU output is sent 
 &lt;h3 id=&#34;best-threshold-for-classification&#34;&gt;Best threshold for classification&lt;/h3&gt;
 &lt;p&gt;The sigmoid value provided by the model is a continuous representation of insincerity in the inputs. We need a specific threshold to separate the two classes. The best threshold was calculated on the training data, then it was applied on the test data. Based on the threshold of the score, test data was classified and submitted.&lt;/p&gt;
 &lt;form action=&#34;https://github.com/abyaadrafid/Quora-Insincere-Question-Classification&#34;&gt;
-    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
-&lt;/form&gt;</description>
-    </item>
-    
-    <item>
-      <title>Recursion Cellular Image Classification</title>
-      <link>https://abyaadrafid.github.io/project/rcic/</link>
-      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
-      <guid>https://abyaadrafid.github.io/project/rcic/</guid>
-      <description>&lt;form action=&#34;https://github.com/abyaadrafid/Recursion-Cellular-Image-Classification&#34;&gt;
-    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
-&lt;/form&gt;</description>
-    </item>
-    
-    <item>
-      <title>SIIM-ACR Pneumothorax Segmentation</title>
-      <link>https://abyaadrafid.github.io/project/siim-acr/</link>
-      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
-      <guid>https://abyaadrafid.github.io/project/siim-acr/</guid>
-      <description>&lt;form action=&#34;https://github.com/abyaadrafid/SIIM-ACR-Pneumothorax-Segmentation&#34;&gt;
     &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
 &lt;/form&gt;</description>
     </item>

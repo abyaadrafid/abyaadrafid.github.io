@@ -3,6 +3,86 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://abyaadrafid.github.io/project/acic/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/aptos/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/tags/biomedical-image-processing/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/tags/computer-vision/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/f360/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/tags/deep-learning/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/ferm/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/tags/natural-language-processing/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/qiqc/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/rcic/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/siim-acr/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/tags/tabular-model/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/dmnist/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/tags/</loc>
+    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://abyaadrafid.github.io/authors/admin/</loc>
   </url>
   
@@ -12,10 +92,6 @@
   
   <url>
     <loc>https://abyaadrafid.github.io/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>https://abyaadrafid.github.io/</loc>
   </url>
   
   <url>
@@ -32,10 +108,6 @@
   
   <url>
     <loc>https://abyaadrafid.github.io/talk/</loc>
-  </url>
-  
-  <url>
-    <loc>https://abyaadrafid.github.io/tags/</loc>
   </url>
   
 </urlset>

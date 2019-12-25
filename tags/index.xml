@@ -5,12 +5,52 @@
     <link>https://abyaadrafid.github.io/tags/</link>
       <atom:link href="https://abyaadrafid.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <description>Tags</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0600</lastBuildDate>
     <image>
       <url>https://abyaadrafid.github.io/img/icon-192.png</url>
       <title>Tags</title>
       <link>https://abyaadrafid.github.io/tags/</link>
     </image>
+    
+    <item>
+      <title>Biomedical Image Processing</title>
+      <link>https://abyaadrafid.github.io/tags/biomedical-image-processing/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/tags/biomedical-image-processing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Computer Vision</title>
+      <link>https://abyaadrafid.github.io/tags/computer-vision/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/tags/computer-vision/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deep Learning</title>
+      <link>https://abyaadrafid.github.io/tags/deep-learning/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Natural Language Processing</title>
+      <link>https://abyaadrafid.github.io/tags/natural-language-processing/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/tags/natural-language-processing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tabular Model</title>
+      <link>https://abyaadrafid.github.io/tags/tabular-model/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/tags/tabular-model/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
