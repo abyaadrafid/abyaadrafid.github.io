@@ -3,17 +3,82 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://abyaadrafid.github.io/project/a3c/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/tags/deep-learning/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/dqn/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/ddqn/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/duellingdqn/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/d3qn/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/tags/policy-gradient/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/reinforce/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/tags/reinforcement-learning/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/sac/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/tags/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://abyaadrafid.github.io/project/valueac/</loc>
+    <lastmod>2020-05-25T00:00:00+06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://abyaadrafid.github.io/project/acic/</loc>
     <lastmod>2019-12-25T00:00:00+06:00</lastmod>
   </url>
   
   <url>
     <loc>https://abyaadrafid.github.io/project/aptos/</loc>
-    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://abyaadrafid.github.io/tags/biomedical-image-processing/</loc>
     <lastmod>2019-12-25T00:00:00+06:00</lastmod>
   </url>
   
@@ -28,27 +93,12 @@
   </url>
   
   <url>
-    <loc>https://abyaadrafid.github.io/tags/deep-learning/</loc>
-    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://abyaadrafid.github.io/project/ferm/</loc>
     <lastmod>2019-12-25T00:00:00+06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://abyaadrafid.github.io/</loc>
-    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://abyaadrafid.github.io/tags/natural-language-processing/</loc>
-    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://abyaadrafid.github.io/project/</loc>
     <lastmod>2019-12-25T00:00:00+06:00</lastmod>
   </url>
   
@@ -74,11 +124,6 @@
   
   <url>
     <loc>https://abyaadrafid.github.io/project/dmnist/</loc>
-    <lastmod>2019-12-25T00:00:00+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://abyaadrafid.github.io/tags/</loc>
     <lastmod>2019-12-25T00:00:00+06:00</lastmod>
   </url>
   

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reinforcement Learning | Homepage | Rafid</title>
+    <link>https://abyaadrafid.github.io/tags/reinforcement-learning/</link>
+      <atom:link href="https://abyaadrafid.github.io/tags/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Reinforcement Learning</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 25 May 2020 00:00:00 +0600</lastBuildDate>
+    <image>
+      <url>https://abyaadrafid.github.io/img/icon-192.png</url>
+      <title>Reinforcement Learning</title>
+      <link>https://abyaadrafid.github.io/tags/reinforcement-learning/</link>
+    </image>
+    
+    <item>
+      <title>Advantage Actor Critic</title>
+      <link>https://abyaadrafid.github.io/project/a3c/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/project/a3c/</guid>
+      <description>&lt;form action=&#34;https://github.com/abyaadrafid/Deep-Reinforcement-Learning/blob/master/Policy%20Gradients/Advantage_Actor_Critic.ipynb&#34;&gt;
+    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
+&lt;/form&gt;</description>
+    </item>
+    
+    <item>
+      <title>Deep Q Learning</title>
+      <link>https://abyaadrafid.github.io/project/dqn/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/project/dqn/</guid>
+      <description>&lt;form action=&#34;https://github.com/abyaadrafid/Deep-Reinforcement-Learning/blob/master/Deep%20Q%20Learning/Deep_Q_Learning.ipynb&#34;&gt;
+    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
+&lt;/form&gt;</description>
+    </item>
+    
+    <item>
+      <title>Double Deep Q Learning</title>
+      <link>https://abyaadrafid.github.io/project/ddqn/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/project/ddqn/</guid>
+      <description>&lt;form action=&#34;https://github.com/abyaadrafid/Deep-Reinforcement-Learning/blob/master/Deep%20Q%20Learning/Double_Deep_Q_Learning.ipynb&#34;&gt;
+    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
+&lt;/form&gt;</description>
+    </item>
+    
+    <item>
+      <title>Dueling Deep Q Learning</title>
+      <link>https://abyaadrafid.github.io/project/duellingdqn/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/project/duellingdqn/</guid>
+      <description>&lt;form action=&#34;https://github.com/abyaadrafid/Deep-Reinforcement-Learning/blob/master/Deep%20Q%20Learning/Dueling_Deep_Q_Learning.ipynb&#34;&gt;
+    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
+&lt;/form&gt;</description>
+    </item>
+    
+    <item>
+      <title>Dueling Double Deep Q Learning</title>
+      <link>https://abyaadrafid.github.io/project/d3qn/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/project/d3qn/</guid>
+      <description>&lt;form action=&#34;https://github.com/abyaadrafid/Deep-Reinforcement-Learning/blob/master/Deep%20Q%20Learning/Dueling_Double_Deep_Q_Learning.ipynb&#34;&gt;
+    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
+&lt;/form&gt;</description>
+    </item>
+    
+    <item>
+      <title>Policy Gradient (REINFORCE)</title>
+      <link>https://abyaadrafid.github.io/project/reinforce/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/project/reinforce/</guid>
+      <description>&lt;form action=&#34;https://github.com/abyaadrafid/Deep-Reinforcement-Learning/blob/master/Policy%20Gradients/Vanilla_Policy_Gradient%5BREINFORCE%5D.ipynb&#34;&gt;
+    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
+&lt;/form&gt;</description>
+    </item>
+    
+    <item>
+      <title>Soft Actor Critic</title>
+      <link>https://abyaadrafid.github.io/project/sac/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/project/sac/</guid>
+      <description>&lt;form action=&#34;https://github.com/abyaadrafid/Deep-Reinforcement-Learning/blob/master/Policy%20Gradients/Soft_Actor_Critic.ipynb&#34;&gt;
+    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
+&lt;/form&gt;</description>
+    </item>
+    
+    <item>
+      <title>Value Actor Critic</title>
+      <link>https://abyaadrafid.github.io/project/valueac/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/project/valueac/</guid>
+      <description>&lt;form action=&#34;https://github.com/abyaadrafid/Deep-Reinforcement-Learning/blob/master/Policy%20Gradients/Value_Actor_Critic.ipynb&#34;&gt;
+    &lt;input type=&#34;submit&#34; formtarget = &#34;_blank&#34; value=&#34;Github Repo&#34; /&gt;
+&lt;/form&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

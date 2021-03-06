@@ -5,7 +5,7 @@
     <link>https://abyaadrafid.github.io/tags/</link>
       <atom:link href="https://abyaadrafid.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <description>Tags</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0600</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 25 May 2020 00:00:00 +0600</lastBuildDate>
     <image>
       <url>https://abyaadrafid.github.io/img/icon-192.png</url>
       <title>Tags</title>
@@ -13,10 +13,26 @@
     </image>
     
     <item>
-      <title>Biomedical Image Processing</title>
-      <link>https://abyaadrafid.github.io/tags/biomedical-image-processing/</link>
-      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
-      <guid>https://abyaadrafid.github.io/tags/biomedical-image-processing/</guid>
+      <title>Deep Learning</title>
+      <link>https://abyaadrafid.github.io/tags/deep-learning/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Policy Gradient</title>
+      <link>https://abyaadrafid.github.io/tags/policy-gradient/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/tags/policy-gradient/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reinforcement Learning</title>
+      <link>https://abyaadrafid.github.io/tags/reinforcement-learning/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/tags/reinforcement-learning/</guid>
       <description></description>
     </item>
     
@@ -25,14 +41,6 @@
       <link>https://abyaadrafid.github.io/tags/computer-vision/</link>
       <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
       <guid>https://abyaadrafid.github.io/tags/computer-vision/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Deep Learning</title>
-      <link>https://abyaadrafid.github.io/tags/deep-learning/</link>
-      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
-      <guid>https://abyaadrafid.github.io/tags/deep-learning/</guid>
       <description></description>
     </item>
     
