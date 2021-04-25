@@ -5,12 +5,30 @@
     <link>https://abyaadrafid.github.io/tags/computer-vision/</link>
       <atom:link href="https://abyaadrafid.github.io/tags/computer-vision/index.xml" rel="self" type="application/rss+xml" />
     <description>Computer Vision</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0600</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 25 Apr 2021 19:36:52 +0600</lastBuildDate>
     <image>
       <url>https://abyaadrafid.github.io/img/icon-192.png</url>
       <title>Computer Vision</title>
       <link>https://abyaadrafid.github.io/tags/computer-vision/</link>
     </image>
+    
+    <item>
+      <title>PnPNet: End-to-End Perception and Prediction With Tracking in the Loop</title>
+      <link>https://abyaadrafid.github.io/post/pnpnet/</link>
+      <pubDate>Sun, 25 Apr 2021 19:36:52 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/post/pnpnet/</guid>
+      <description>&lt;p&gt;In this post, we will be looking at the paper &lt;a href=&#34;https://arxiv.org/abs/2005.14711&#34;&gt;PnPNet: End-to-End Perception and Prediction with Tracking in the Loop&lt;/a&gt;, by &lt;em&gt;Liang et al.&lt;/em&gt;,  which was published in CVPR 2020 &lt;a href=&#34;http://localhost:1313/post/pnpnet/#1&#34;&gt;[1]&lt;/a&gt;. After discuss our task and discussing some related research in this field, we will be looking at the methodology of the paper. Then we will analyze the quantative results and have a look at the qualitative results. Finally, we will finish it off with some remarks and possible ideas for extension.&lt;/p&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida dignissim suscipit. Integer quis faucibus felis. Pellentesque consectetur tellus odio, ornare ultrices massa ultrices nec. Nam sit amet tincidunt eros. Phasellus id posuere est. Sed accumsan accumsan risus vel posuere. Morbi at nibh ultricies, ultrices nisi non, congue nisl. Phasellus rhoncus ligula vel sem iaculis, sed bibendum lectus commodo. Fusce in aliquam tortor. Ut iaculis sapien enim, non mollis lectus cursus vitae. Aenean dictum ex at arcu volutpat elementum. Ut in elit molestie, convallis mauris id, mollis felis. Ut mattis leo non elit fermentum, vel interdum massa faucibus. Maecenas elit nibh, luctus ut massa sit amet, efficitur ornare magna.&lt;/p&gt;
+&lt;p&gt;Curabitur viverra, mi eu vestibulum cursus, tellus nibh lobortis ex, at congue felis ante in ante. Aliquam erat volutpat. Nulla facilisi. Sed id gravida est. Aliquam sem enim, rutrum ac rutrum id, pharetra quis sapien. Quisque malesuada lacus eget tortor pharetra ullamcorper. Integer non metus eros. Curabitur ornare efficitur sollicitudin. Nullam pharetra nisl sed leo scelerisque, ut cursus turpis fermentum.&lt;/p&gt;
+&lt;p&gt;Aliquam id convallis lorem, vehicula fringilla nisl. Sed euismod porttitor tempor. Vivamus at tortor quis ex faucibus ullamcorper sit amet a orci. Nullam nisi metus, rutrum at urna quis, lobortis venenatis orci. Nunc mollis lacus tortor, vitae pharetra dolor suscipit vitae. Praesent nec malesuada purus. Duis id magna eu lacus elementum faucibus.&lt;/p&gt;
+&lt;p&gt;Quisque scelerisque lectus dui. Fusce id ipsum sit amet ante consectetur consequat et ut justo. Mauris orci elit, sagittis in posuere vitae, euismod dignissim diam. Nulla ac velit pellentesque, gravida arcu tristique, feugiat elit. Quisque ultricies ut est non imperdiet. Vivamus blandit luctus ligula sagittis consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut eu velit ac sapien convallis luctus.&lt;/p&gt;
+&lt;p&gt;Proin ornare non enim at dapibus. Aliquam erat volutpat. Aenean malesuada pharetra lacus, euismod suscipit mauris gravida quis. Morbi id pulvinar libero. Pellentesque imperdiet dignissim gravida. Morbi commodo augue non dolor lacinia aliquam. Nulla erat lorem, aliquam nec lacinia eu, efficitur in lacus.&lt;/p&gt;
+&lt;h1 id=&#34;related-works&#34;&gt;Related works&lt;/h1&gt;
+&lt;div id=&#34;1&#34;&gt;
+[1] Ming Liang, Bin Yang, Wenyuan Zeng, Yun Chen, Rui Hu, Sergio Casas, Raquel Urtasun, &#34;PnPNet: End-to-End Perception and Prediction with Tracking in the Loop&#34;, in CVPR, 2020.
+&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>Aerial Cactus Identification</title>

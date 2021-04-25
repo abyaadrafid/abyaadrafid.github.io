@@ -5,7 +5,7 @@
     <link>https://abyaadrafid.github.io/tags/</link>
       <atom:link href="https://abyaadrafid.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <description>Tags</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 25 Oct 2020 19:07:27 +0600</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 25 Apr 2021 19:36:52 +0600</lastBuildDate>
     <image>
       <url>https://abyaadrafid.github.io/img/icon-192.png</url>
       <title>Tags</title>
@@ -13,9 +13,17 @@
     </image>
     
     <item>
+      <title>Computer Vision</title>
+      <link>https://abyaadrafid.github.io/tags/computer-vision/</link>
+      <pubDate>Sun, 25 Apr 2021 19:36:52 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/tags/computer-vision/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Deep Learning</title>
       <link>https://abyaadrafid.github.io/tags/deep-learning/</link>
-      <pubDate>Sun, 25 Oct 2020 19:07:27 +0600</pubDate>
+      <pubDate>Sun, 25 Apr 2021 19:36:52 +0600</pubDate>
       <guid>https://abyaadrafid.github.io/tags/deep-learning/</guid>
       <description></description>
     </item>
@@ -41,14 +49,6 @@
       <link>https://abyaadrafid.github.io/tags/reinforcement-learning/</link>
       <pubDate>Mon, 25 May 2020 00:00:00 +0600</pubDate>
       <guid>https://abyaadrafid.github.io/tags/reinforcement-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Computer Vision</title>
-      <link>https://abyaadrafid.github.io/tags/computer-vision/</link>
-      <pubDate>Wed, 25 Dec 2019 00:00:00 +0600</pubDate>
-      <guid>https://abyaadrafid.github.io/tags/computer-vision/</guid>
       <description></description>
     </item>
     
