@@ -5,12 +5,20 @@
     <link>https://abyaadrafid.github.io/</link>
       <atom:link href="https://abyaadrafid.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Homepage | Rafid</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 25 May 2020 00:00:00 +0600</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 25 Oct 2020 19:07:27 +0600</lastBuildDate>
     <image>
       <url>https://abyaadrafid.github.io/img/icon-192.png</url>
       <title>Homepage | Rafid</title>
       <link>https://abyaadrafid.github.io/</link>
     </image>
+    
+    <item>
+      <title>A Novel Approach to Categorize News Articles From Headlines and Short Text</title>
+      <link>https://abyaadrafid.github.io/publication/a-novel-approach-to-categorize-news-articles-from-headlines-and-short-text/</link>
+      <pubDate>Sun, 25 Oct 2020 19:07:27 +0600</pubDate>
+      <guid>https://abyaadrafid.github.io/publication/a-novel-approach-to-categorize-news-articles-from-headlines-and-short-text/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Advantage Actor Critic</title>

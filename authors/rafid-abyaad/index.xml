@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Publications | Homepage | Rafid</title>
-    <link>https://abyaadrafid.github.io/publication/</link>
-      <atom:link href="https://abyaadrafid.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
-    <description>Publications</description>
+    <title>Rafid Abyaad | Homepage | Rafid</title>
+    <link>https://abyaadrafid.github.io/authors/rafid-abyaad/</link>
+      <atom:link href="https://abyaadrafid.github.io/authors/rafid-abyaad/index.xml" rel="self" type="application/rss+xml" />
+    <description>Rafid Abyaad</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 25 Oct 2020 19:07:27 +0600</lastBuildDate>
     <image>
       <url>https://abyaadrafid.github.io/img/icon-192.png</url>
-      <title>Publications</title>
-      <link>https://abyaadrafid.github.io/publication/</link>
+      <title>Rafid Abyaad</title>
+      <link>https://abyaadrafid.github.io/authors/rafid-abyaad/</link>
     </image>
     
     <item>
