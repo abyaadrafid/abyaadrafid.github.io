@@ -17,35 +17,35 @@
       <link>https://abyaadrafid.github.io/post/pnpnet/</link>
       <pubDate>Sun, 25 Apr 2021 19:36:52 +0600</pubDate>
       <guid>https://abyaadrafid.github.io/post/pnpnet/</guid>
-      <description>&lt;p&gt;In this post, we will be looking at the paper &lt;a href=&#34;https://arxiv.org/abs/2005.14711&#34;&gt;PnPNet: End-to-End Perception and Prediction with Tracking in the Loop&lt;/a&gt;, by &lt;em&gt;Liang et al.&lt;/em&gt;,  which was published in CVPR 2020 &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#1&#34;&gt;[1]&lt;/a&gt;. After defining our task and discussing some related research in this field, we will be looking at the methodology of the paper. Then we will analyse the quantitative results and have a look at the qualitative results. Finally, we will finish it off with some remarks and possible ideas for extension.&lt;/p&gt;
+      <description>&lt;p&gt;In this post, we will be looking at the paper &lt;a href=&#34;https://arxiv.org/abs/2005.14711&#34;&gt;PnPNet: End-to-End Perception and Prediction with Tracking in the Loop&lt;/a&gt;, by &lt;em&gt;Liang et al.&lt;/em&gt;,  which was published in CVPR 2020 &lt;a href=&#34;#1&#34;&gt;[1]&lt;/a&gt;. After defining our task and discussing some related research in this field, we will be looking at the methodology of the paper. Then we will analyse the quantitative results and have a look at the qualitative results. Finally, we will finish it off with some remarks and possible ideas for extension.&lt;/p&gt;
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;In the context of self-driving vehicles, predicting the motion of other vehicles is a critical task. Approximating the trajectory of neighbouring agents in the future is equally as important as detecting them in the current time frame. To do this task, so far three paradigms have been proposed.&lt;/p&gt;
 &lt;p&gt;The first divides this problem into three separate sub-tasks, which are handled by completely independent sub-systems. These three tasks, namely, object detection, object tracking, and motion forecasting are done sequentially. As they are developed separately, they need more computing power and cannot correct mistakes from upstream tasks. The second paradigm  tries to solve the detection and prediction task with a single neural network. This yields more efficient computation but these models suffer from limited use of temporal history and are vulnerable to occlusion.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;autonomy_stacks.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
-&lt;p&gt;Three paradigms of perception and prediction problems &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#1&#34;&gt;[1]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Three paradigms of perception and prediction problems &lt;a href=&#34;#1&#34;&gt;[1]&lt;/a&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;p&gt;This paper introduces the new third paradigm. It argues that, for sequential modelling tasks such as motion forecasting, past data is very important. To that end, it proposes PnPNet which combines multi-object tracking with joint perception and prediction models. We will go into the details of the model after discussing some other works that try to tackle different aspects of our problem.&lt;/p&gt;
 &lt;h1 id=&#34;related-works&#34;&gt;Related works&lt;/h1&gt;
 &lt;h3 id=&#34;3d-object-detection&#34;&gt;3D object detection&lt;/h3&gt;
-&lt;p&gt;The use of depth sensors such as LiDARs have been shown to have better performance &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#2&#34;&gt;[2]&lt;/a&gt; than cameras for 3D detection. Some works also explore a fusion of LiDAR point clouds and camera inputs &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#3&#34;&gt;[3]&lt;/a&gt;.
+&lt;p&gt;The use of depth sensors such as LiDARs have been shown to have better performance &lt;a href=&#34;#2&#34;&gt;[2]&lt;/a&gt; than cameras for 3D detection. Some works also explore a fusion of LiDAR point clouds and camera inputs &lt;a href=&#34;#3&#34;&gt;[3]&lt;/a&gt;.
 &lt;img src=&#34;fusion_model.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
-&lt;p&gt;A qualitative result of fusion models &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#3&#34;&gt;[3]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A qualitative result of fusion models &lt;a href=&#34;#3&#34;&gt;[3]&lt;/a&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;h3 id=&#34;multi-object-tracking&#34;&gt;Multi-Object Tracking&lt;/h3&gt;
-&lt;p&gt;Multi-Object tracking is a system to track multiple objects at the same time. It consists of a discrete data association problem and a continuous trajectory estimation problem &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#4&#34;&gt;[4]&lt;/a&gt;. There have been efforts to handle occlusion with hand crafted heuristics &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#5&#34;&gt;[5]&lt;/a&gt; and single object tracking &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#6&#34;&gt;[6]&lt;/a&gt; to handle occlusion. To handle the trajectory problem, some approaches also use sensor features but only use up to 3 seconds of temporal history &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#7&#34;&gt;[7]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Multi-Object tracking is a system to track multiple objects at the same time. It consists of a discrete data association problem and a continuous trajectory estimation problem &lt;a href=&#34;#4&#34;&gt;[4]&lt;/a&gt;. There have been efforts to handle occlusion with hand crafted heuristics &lt;a href=&#34;#5&#34;&gt;[5]&lt;/a&gt; and single object tracking &lt;a href=&#34;#6&#34;&gt;[6]&lt;/a&gt; to handle occlusion. To handle the trajectory problem, some approaches also use sensor features but only use up to 3 seconds of temporal history &lt;a href=&#34;#7&#34;&gt;[7]&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;multi-object_tracking.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
-&lt;p&gt;An example of multi-object tracking takes from &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#8&#34;&gt;[8]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;An example of multi-object tracking takes from &lt;a href=&#34;#8&#34;&gt;[8]&lt;/a&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;h3 id=&#34;motion-forecasting&#34;&gt;Motion Forecasting&lt;/h3&gt;
-&lt;p&gt;Different methods try to approach the multi agent motion forecasting problem. &lt;em&gt;Alahi et al.&lt;/em&gt; propose lstm based social pooling to model motion &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#9&#34;&gt;[9]&lt;/a&gt;. Social-GAN &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#10&#34;&gt;[10]&lt;/a&gt; improves on it using adversarial training. The use of sensor features are also explored, but these methods usually have generalization issues when applied to noisy data &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#11&#34;&gt;[11]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Different methods try to approach the multi agent motion forecasting problem. &lt;em&gt;Alahi et al.&lt;/em&gt; propose lstm based social pooling to model motion &lt;a href=&#34;#9&#34;&gt;[9]&lt;/a&gt;. Social-GAN &lt;a href=&#34;#10&#34;&gt;[10]&lt;/a&gt; improves on it using adversarial training. The use of sensor features are also explored, but these methods usually have generalization issues when applied to noisy data &lt;a href=&#34;#11&#34;&gt;[11]&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;joint-models-for-perception-and-prediction&#34;&gt;Joint models for Perception and Prediction&lt;/h3&gt;
-&lt;p&gt;The FAF paper &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#12&#34;&gt;[12]&lt;/a&gt; of &lt;em&gt;Luo et al.&lt;/em&gt; serves as a direct predecessor and an evaluation baseline for PnPNet. This model uses a single convolutional backbone to detect and predict future motion. NeuralMP &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#13&#34;&gt;[13]&lt;/a&gt; shares motion planning features with perception and prediction to allow end to end training.&lt;/p&gt;
+&lt;p&gt;The FAF paper &lt;a href=&#34;#12&#34;&gt;[12]&lt;/a&gt; of &lt;em&gt;Luo et al.&lt;/em&gt; serves as a direct predecessor and an evaluation baseline for PnPNet. This model uses a single convolutional backbone to detect and predict future motion. NeuralMP &lt;a href=&#34;#13&#34;&gt;[13]&lt;/a&gt; shares motion planning features with perception and prediction to allow end to end training.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;neuralmp.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
-&lt;p&gt;Some qualitative results from NeuralMP &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#13&#34;&gt;[13]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Some qualitative results from NeuralMP &lt;a href=&#34;#13&#34;&gt;[13]&lt;/a&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;h1 id=&#34;proposed-method--pnpnet&#34;&gt;Proposed method : PnPNet&lt;/h1&gt;
 &lt;h3 id=&#34;technical-contributions&#34;&gt;Technical Contributions&lt;/h3&gt;
@@ -63,57 +63,73 @@
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;model.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
-&lt;p&gt;A summary of PnPNet workflow &lt;a href=&#34;http://abyaadrafid.github.io/post/pnpnet/#1&#34;&gt;[1]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A summary of PnPNet workflow &lt;a href=&#34;#1&#34;&gt;[1]&lt;/a&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
-&lt;h2 id=&#34;3d-object-detection-module&#34;&gt;3D Object detection module&lt;/h2&gt;
+&lt;h3 id=&#34;3d-object-detection-module&#34;&gt;3D Object detection module&lt;/h3&gt;
 &lt;p&gt;The detection module takes multi-sweep LiDAR point cloud representation in bird-eye-view and an HD map as input. Optionally, geometric and semantic information of the HD map can also be used. 2D convolutional neural network based backbone is applied to the input, which generates the intermediate BEV features that will be used in downstream tasks. A convolutional detection header is then used on the intermediate features to create dense object detections at each time step.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;3dmodule.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;Workflow of the 3D detection module&lt;/p&gt;
 &lt;/figcaption&gt;
-&lt;h2 id=&#34;discrete-continuous-tracking-module&#34;&gt;Discrete-Continuous Tracking module&lt;/h2&gt;
-&lt;p&gt;Blah blah blah&lt;/p&gt;
-&lt;h2 id=&#34;motion-forecasting-module&#34;&gt;Motion Forecasting module&lt;/h2&gt;
+&lt;h3 id=&#34;discrete-continuous-tracking-module&#34;&gt;Discrete-Continuous Tracking module&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;trackingrep.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;figcaption&gt;
+&lt;p&gt;Trajectory level representation generation&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;h4 id=&#34;data-association&#34;&gt;Data Association&lt;/h4&gt;
+&lt;h5 id=&#34;single-object-tracking&#34;&gt;Single object tracking&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;sot.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;hungarian-algorithm&#34;&gt;Hungarian Algorithm&lt;/h5&gt;
+&lt;h4 id=&#34;trajectory-estimation&#34;&gt;Trajectory Estimation&lt;/h4&gt;
+&lt;h3 id=&#34;motion-forecasting-module&#34;&gt;Motion Forecasting module&lt;/h3&gt;
+&lt;h3 id=&#34;end-to-end-training&#34;&gt;End-to-End Training&lt;/h3&gt;
+&lt;h1 id=&#34;results&#34;&gt;Results&lt;/h1&gt;
+&lt;h2 id=&#34;datasets&#34;&gt;Datasets&lt;/h2&gt;
+&lt;h2 id=&#34;metrics&#34;&gt;Metrics&lt;/h2&gt;
+&lt;h2 id=&#34;quantitative-results&#34;&gt;Quantitative results&lt;/h2&gt;
+&lt;h2 id=&#34;ablation-studies&#34;&gt;Ablation studies&lt;/h2&gt;
+&lt;h2 id=&#34;qualitative-results&#34;&gt;Qualitative Results&lt;/h2&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
-&lt;div id=&#34;1&#34;&gt;
+&lt;p id=&#34;1&#34;&gt;
 [1] Ming Liang, Bin Yang, Wenyuan Zeng, Yun Chen, Rui Hu, Sergio Casas, Raquel Urtasun, &#34;PnPNet: End-to-End Perception and Prediction with Tracking in the Loop&#34;, in CVPR, 2020.
-&lt;/div&gt;
-&lt;div id=&#34;2&#34;&gt;
+&lt;/p&gt;
+&lt;p id=&#34;2&#34;&gt;
 [2] Bin Yang, Wenjie Luo, and Raquel Urtasun. Pixor: Realtime 3d object detection from point clouds. In CVPR, 2018.
-&lt;/div&gt;
-&lt;div id=&#34;3&#34;&gt;
+&lt;/p&gt;
+&lt;p id=&#34;3&#34;&gt;
 [3] Ming Liang, Bin Yang, Shenlong Wang, and Raquel Urtasun. Deep continuous fusion for multi-sensor 3d object detection. In ECCV, 2018.
-&lt;/div&gt;
-&lt;div id=&#34;4&#34;&gt;
+&lt;/p&gt;
+&lt;p id=&#34;4&#34;&gt;
 [4] Anton Milan, Konrad Schindler, and Stefan Roth. Multitarget tracking by discrete-continuous energy minimization. TPAMI, 38(10):2054–2068, 2015
-&lt;/div&gt;
-&lt;div id=&#34;5&#34;&gt;
+&lt;/p&gt;
+&lt;p id=&#34;5&#34;&gt;
 [5] Hasith Karunasekera, Han Wang, and Handuo Zhang. Multiple object tracking with attention to appearance, structure, motion and size. IEEE Access 7:104423–104434, 2019.
-&lt;/div&gt;
-&lt;div id=&#34;6&#34;&gt; 
+&lt;/p&gt;
+&lt;p id=&#34;6&#34;&gt; 
 [6] Peng Chu and Haibin Ling. Famnet: Joint learning of feature, affinity and multi-dimensional assignment for online multiple object tracking. In ICCV, 2019.
-&lt;/div&gt;
-&lt;div id =&#34;7&#34;&gt;
+&lt;/p&gt;
+&lt;p id =&#34;7&#34;&gt;
 [7] Wenwei Zhang, Hui Zhou, Shuyang Sun, Zhe Wang, Jianping Shi, and Chen Change Loy. Robust multi-modality multi-object tracking. In ICCV, 2019.
-&lt;/div&gt;
-&lt;div id=&#34;8&#34;&gt;
+&lt;/p&gt;
+&lt;p id=&#34;8&#34;&gt;
 [8] Michael D Breitenstein, Fabian Reichlin, Bastian Leibe, Esther Koller-Meier, and Luc Van Gool. Online multiperson tracking-by-detection from a single, uncalibrated camera. TPAMI, 33(9):1820–1833, 2010.
-&lt;/div&gt;
-&lt;div id=&#34;9&#34;&gt;
+&lt;/p&gt;
+&lt;p id=&#34;9&#34;&gt;
 [9] Alexandre Alahi, Kratarth Goel, Vignesh Ramanathan, Alexandre Robicquet, Li Fei-Fei, and Silvio Savarese. Social lstm: Human trajectory prediction in crowded spaces. In CVPR, 2016.
-&lt;/div&gt;
-&lt;div id=&#34;10&#34;&gt;
+&lt;/p&gt;
+&lt;p id=&#34;10&#34;&gt;
 [10] Agrim Gupta, Justin Johnson, Li Fei-Fei, Silvio Savarese, and Alexandre Alahi. Social gan: Socially acceptable trajectories with generative adversarial networks. In CVPR, 2018.
-&lt;/div&gt;
-&lt;div id=&#34;11&#34;&gt;
+&lt;/p&gt;
+&lt;p id=&#34;11&#34;&gt; 
 [11] Nicholas Rhinehart, Rowan McAllister, Kris Kitani, and Sergey Levine. Precog: Prediction conditioned on goals invisual multi-agent settings. In ICCV, 2019. 
-&lt;/div&gt;
-&lt;div id=&#34;12&#34;&gt;
+&lt;/p&gt;
+&lt;p id=&#34;12&#34;&gt;
 [12] Wenjie Luo, Bin Yang, and Raquel Urtasun. Fast and furious: Real time end-to-end 3d detection, tracking and motion forecasting with a single convolutional net. In CVPR, 2018.
-&lt;/div&gt;
-&lt;div id=13&gt;
+&lt;/p&gt;
+&lt;p id=13&gt;
 [13] Wenyuan Zeng, Wenjie Luo, Simon Suo, Abbas Sadat, Bin Yang, Sergio Casas, and Raquel Urtasun. End-to-end interpretable neural motion planner. In CVPR, 2019.
-&lt;/div&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
   </channel>
