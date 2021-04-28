@@ -72,14 +72,46 @@
 &lt;p&gt;Workflow of the 3D detection module&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;h3 id=&#34;discrete-continuous-tracking-module&#34;&gt;Discrete-Continuous Tracking module&lt;/h3&gt;
+&lt;p&gt;As discussed in the related works, there are two separate challenges in multi-object tracking. Previous works mostly focus on the discrete problem of data association but PnPNet also takes the continuous problem of trajectory estimation into account. The paper argues that it helps to prevent association errors from accumulating over time and reduces the variance in motion history. To that end, it proposes a two stage tracking framework. To use the framework, rich and concise trajectory level object representation need to be learned.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;trackingrep.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;Trajectory level representation generation&lt;/p&gt;
 &lt;/figcaption&gt;
+&lt;p&gt;The representation learning problem is formulated as a sequence modelling problem. We use the intermediate FEV features from the backbone network and the location information of each object at time t to run a Bilinear Interpolation. This output is regarded as the representation of motion of each object from the start frame to the current frame. Along with this, the absolute velocities of each object is passed into an MLP/feed-forward network. The merged features from this FF network is then used as the sequential input for our LSTM. This LSTM hidden state is our trajectory level representation at each time step.&lt;/p&gt;
 &lt;h4 id=&#34;data-association&#34;&gt;Data Association&lt;/h4&gt;
+&lt;p&gt;First stage of the tracking framework is the discrete tracker. At time t, given N&lt;sub&gt;t&lt;/sub&gt; detections and M&lt;sub&gt;t-1&lt;/sub&gt; trajectories, it tries to determine the associations between them. This association problem is formulated as a bipartite graph matching problem. As a result, a one-to-one matching is guaranteed. The edge values for our bipartite matching problem are the affinity values, which represent how likely is a track M&lt;sub&gt;t-1&lt;/sub&gt; to belong to detection N&lt;sub&gt;t&lt;/sub&gt;. The affinity matrix :
+$$
+C_{i,j} =
+\begin{cases}
+MLP_{pair}(f(D_{i}^t); h(P_{j}^{t−1})) &amp;amp; if\ 1 ≤ j ≤ M_{t−1}\\&lt;br&gt;
+MLP_{unary}(f(D_{i}^t)) &amp;amp; if\ j = M_{t−1} + i \\&lt;br&gt;
+−inf &amp;amp; otherwise \\&lt;br&gt;
+\end{cases}    &lt;br&gt;
+$$
+The affinity values are calculated with binary or unary MLPs. If we have more or equal number of tracks at the previous step than detections at this step, we use the binary MLP. Otherwise the unary MLP is used. This bipartite system is solved optimally using the Hungarian algorithm. We use single object tracking for older unmatched tracks. Combining results from bipartite matching and SOT yields a final set of tracks P&lt;sub&gt;t&lt;/sub&gt;.&lt;/p&gt;
 &lt;h5 id=&#34;single-object-tracking&#34;&gt;Single object tracking&lt;/h5&gt;
+&lt;p&gt;The single object tracker used in the PnPNet paper follows nearly the same methodology as the Siamese tracker &lt;a href=&#34;#14&#34;&gt;[14]&lt;/a&gt;. The Siamese tracker has two networks. One of these twin networks receive an exemplar image as input, other one receives a search image as input. The task for the twin network is to try and find the exemplar image within the search image.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;sot.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;figcaption&gt;
+&lt;p&gt;Siamese tracker from &lt;a href=&#34;#14&#34;&gt;[14]&lt;/a&gt;.&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;p&gt;Siamese trackers usually have a cross-correlation layer at the end. PnPNet chooses to replace this layer with an MLP with learnable parameters.&lt;/p&gt;
 &lt;h5 id=&#34;hungarian-algorithm&#34;&gt;Hungarian Algorithm&lt;/h5&gt;
+&lt;p&gt;The Hungarian algorithm is an optimization algorithm that produces the best one-to-one matching when applied to a bipartite graph. In our context, two sets of nodes are the detections and the tracks, denoted as &lt;strong&gt;N&lt;/strong&gt; and &lt;strong&gt;M&lt;/strong&gt; respectively. The edges between these sets of nodes are the affinity values, denoted by &lt;strong&gt;a&lt;/strong&gt;. Here we see an example formulation :&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph TD;
+id1((&amp;quot;N&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt;&amp;quot;))-- &amp;quot;a&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt;&amp;quot; ---id2((&amp;quot;M&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt;&amp;quot;));
+id1((&amp;quot;N&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt;&amp;quot;))-- &amp;quot;a&amp;lt;sub&amp;gt;4&amp;lt;/sub&amp;gt;&amp;quot; ---id3((&amp;quot;M&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt;&amp;quot;));
+id1((&amp;quot;N&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt;&amp;quot;))-- &amp;quot;a&amp;lt;sub&amp;gt;7&amp;lt;/sub&amp;gt;&amp;quot; ---id4((&amp;quot;M&amp;lt;sub&amp;gt;3&amp;lt;/sub&amp;gt;&amp;quot;));
+
+id6((&amp;quot;N&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt;&amp;quot;))-- &amp;quot;a&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt;&amp;quot; ---id2((&amp;quot;M&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt;&amp;quot;));
+id6((&amp;quot;N&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt;&amp;quot;))-- &amp;quot;a&amp;lt;sub&amp;gt;5&amp;lt;/sub&amp;gt;&amp;quot; ---id3((&amp;quot;M&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt;&amp;quot;));
+id6((&amp;quot;N&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt;&amp;quot;))-- &amp;quot;a&amp;lt;sub&amp;gt;8&amp;lt;/sub&amp;gt;&amp;quot; ---id4((&amp;quot;M&amp;lt;sub&amp;gt;3&amp;lt;/sub&amp;gt;&amp;quot;));
+
+id7((&amp;quot;N&amp;lt;sub&amp;gt;3&amp;lt;/sub&amp;gt;&amp;quot;))-- &amp;quot;a&amp;lt;sub&amp;gt;3&amp;lt;/sub&amp;gt;&amp;quot; ---id2((&amp;quot;M&amp;lt;sub&amp;gt;1&amp;lt;/sub&amp;gt;&amp;quot;));
+id7((&amp;quot;N&amp;lt;sub&amp;gt;3&amp;lt;/sub&amp;gt;&amp;quot;))-- &amp;quot;a&amp;lt;sub&amp;gt;6&amp;lt;/sub&amp;gt;&amp;quot; ---id3((&amp;quot;M&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt;&amp;quot;));
+id7((&amp;quot;N&amp;lt;sub&amp;gt;3&amp;lt;/sub&amp;gt;&amp;quot;))-- &amp;quot;a&amp;lt;sub&amp;gt;9&amp;lt;/sub&amp;gt;&amp;quot; ---id4((&amp;quot;M&amp;lt;sub&amp;gt;3&amp;lt;/sub&amp;gt;&amp;quot;));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hungarian algorithm will find the best matching that maximizes the overall affinity value throughout the graph.&lt;/p&gt;
 &lt;h4 id=&#34;trajectory-estimation&#34;&gt;Trajectory Estimation&lt;/h4&gt;
 &lt;h3 id=&#34;motion-forecasting-module&#34;&gt;Motion Forecasting module&lt;/h3&gt;
 &lt;h3 id=&#34;end-to-end-training&#34;&gt;End-to-End Training&lt;/h3&gt;
@@ -127,8 +159,11 @@
 &lt;p id=&#34;12&#34;&gt;
 [12] Wenjie Luo, Bin Yang, and Raquel Urtasun. Fast and furious: Real time end-to-end 3d detection, tracking and motion forecasting with a single convolutional net. In CVPR, 2018.
 &lt;/p&gt;
-&lt;p id=13&gt;
+&lt;p id=&#34;13&#34;&gt;
 [13] Wenyuan Zeng, Wenjie Luo, Simon Suo, Abbas Sadat, Bin Yang, Sergio Casas, and Raquel Urtasun. End-to-end interpretable neural motion planner. In CVPR, 2019.
+&lt;/p&gt;
+&lt;p id=&#34;14&#34;&gt;
+[14]  Luca Bertinetto, Jack Valmadre, Joao F Henriques, Andrea Vedaldi, and Philip HS Torr. Fully-convolutional siamese networks for object tracking. In ECCV, 2016.
 &lt;/p&gt;</description>
     </item>
     
