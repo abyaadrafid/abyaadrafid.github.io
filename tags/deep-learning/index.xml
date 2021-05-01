@@ -180,7 +180,24 @@ Here N&lt;sub&gt;i,j&lt;/sub&gt; is the total number of positive and negative pa
 &lt;p&gt;From the results of the studies, it is obvious that the tracking module has the largest effect on the prediction results. ADE and FDE go up to 18% percent in the absence of the tracking module. The trajectory rescore module influences average precision and displacement errors. The single object tracking module has a decent contribution across all the metrics.&lt;/p&gt;
 &lt;h2 id=&#34;qualitative-results&#34;&gt;Qualitative Results&lt;/h2&gt;
 &lt;p&gt;Well, these explanations are good and all but, where are the tangible results? Let&#39;s look at the visualization of perception and prediction results on ATG4D. This demonstrates that by learning trajectory representations explicitly, PnPNet is able to handle occlusion and produces robust predictions.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;quali.gif&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+&lt;video controls &gt;
+  &lt;source src=&#34;qual.mp4&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;
 &lt;figcaption&gt;
 &lt;p&gt;Qualitative results of  &lt;a href=&#34;#1&#34;&gt;[1]&lt;/a&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
