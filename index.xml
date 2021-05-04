@@ -34,19 +34,23 @@
 &lt;p&gt;A qualitative result of fusion models &lt;a href=&#34;#3&#34;&gt;[3]&lt;/a&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;h3 id=&#34;multi-object-tracking&#34;&gt;Multi-Object Tracking&lt;/h3&gt;
-&lt;p&gt;Multi-Object tracking is a system to track multiple objects at the same time. It consists of a discrete data association problem and a continuous trajectory estimation problem &lt;a href=&#34;#4&#34;&gt;[4]&lt;/a&gt;. There have been efforts to handle occlusion with hand-crafted heuristics &lt;a href=&#34;#5&#34;&gt;[5]&lt;/a&gt; and single object tracking &lt;a href=&#34;#6&#34;&gt;[6]&lt;/a&gt; to handle occlusion. To handle the trajectory problem, some approaches also use sensor features but only use up to 3 seconds of temporal history &lt;a href=&#34;#7&#34;&gt;[7]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Multi-Object tracking is a system to track multiple objects at the same time. It consists of a discrete data association problem and a continuous trajectory estimation problem &lt;a href=&#34;#4&#34;&gt;[4]&lt;/a&gt;. There have been efforts to handle occlusion with hand-crafted heuristics &lt;a href=&#34;#5&#34;&gt;[5]&lt;/a&gt; and single object tracking &lt;a href=&#34;#6&#34;&gt;[6]&lt;/a&gt; to handle occlusion. To handle the trajectory problem, some approaches also use sensor features&lt;a href=&#34;#7&#34;&gt;[7]&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;multi-object_tracking.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;An example of multi-object tracking takes from &lt;a href=&#34;#8&#34;&gt;[8]&lt;/a&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;h3 id=&#34;motion-forecasting&#34;&gt;Motion Forecasting&lt;/h3&gt;
-&lt;p&gt;Different methods try to approach the multi-agent motion forecasting problem. &lt;em&gt;Alahi et al.&lt;/em&gt; propose LSTM based social pooling to model motion &lt;a href=&#34;#9&#34;&gt;[9]&lt;/a&gt;. Social-GAN &lt;a href=&#34;#10&#34;&gt;[10]&lt;/a&gt; improves on it using adversarial training. The use of sensor features is also explored, but these methods usually have generalization issues when applied to noisy data &lt;a href=&#34;#11&#34;&gt;[11]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Different methods try to approach the multi-agent motion forecasting problem. &lt;em&gt;Alahi et al.&lt;/em&gt; propose LSTM based social pooling to model motion &lt;a href=&#34;#9&#34;&gt;[9]&lt;/a&gt;. Social-GAN &lt;a href=&#34;#10&#34;&gt;[10]&lt;/a&gt; improves on it using adversarial training. The use of sensor features is also explored, but these methods usually have generalization issues when applied to noisy data &lt;a href=&#34;#11&#34;&gt;[11]&lt;/a&gt;. Raster representation in BEV that encodes both perception and map information is widely used as well &lt;a href=&#34;#2&#34;&gt;[2]&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;joint-models-for-perception-and-prediction&#34;&gt;Joint models for Perception and Prediction&lt;/h3&gt;
 &lt;p&gt;The FAF paper &lt;a href=&#34;#12&#34;&gt;[12]&lt;/a&gt; of &lt;em&gt;Luo et al.&lt;/em&gt; serves as a direct predecessor and an evaluation baseline for PnPNet. This model uses a single convolutional backbone to detect and predict future motion. NeuralMP &lt;a href=&#34;#13&#34;&gt;[13]&lt;/a&gt; shares motion planning features with perception and prediction to allow end-to-end training.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;neuralmp.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;Some qualitative results from NeuralMP &lt;a href=&#34;#13&#34;&gt;[13]&lt;/a&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
+&lt;h3 id=&#34;motivations-for-the-approach&#34;&gt;Motivations for the approach&lt;/h3&gt;
+&lt;p&gt;Research efforts in this sector have developed the field of autonomous driving a lot. However, they also have some shortcomings. Multi-object tracking with supplementary sensor readings can not effectively use a long history of temporal data. These models saturate after three seconds &lt;a href=&#34;#7&#34;&gt;[7]&lt;/a&gt;. Also most-multi object tracking efforts only tackle one of the two tasks at a time.&lt;/p&gt;
+&lt;p&gt;Although earlier joint models for perception and prediction use sensor information, they do not exploit the salient features of actors in the time dimension. As a result, their overall performance might be vastly improved with some adjustments.&lt;/p&gt;
+&lt;p&gt;As we will see, PnPNet does exactly that. Where earlier models kept the tracking task at the end of the task stack, PnPNet pulls it inside the perception-prediction loop. By doing that, it can utilize trajectory-level representation and can improve performance in all related tasks. It also solves the discrete-continuous tracking problem that other works overlook with a novel tracking framework. PnPNet deviates from the common approach of &lt;a href=&#34;#2&#34;&gt;[2]&lt;/a&gt; and directly uses perception features for better scene contexts.&lt;/p&gt;
 &lt;h1 id=&#34;proposed-method-pnpnet&#34;&gt;Proposed method: PnPNet&lt;/h1&gt;
 &lt;h3 id=&#34;technical-contributions&#34;&gt;Technical Contributions&lt;/h3&gt;
 &lt;p&gt;The discussed related research overlook an important aspect of our problem. They do not take the temporal characteristics of actors into account. To allow for that, this paper makes two major technical contributions :&lt;/p&gt;
@@ -66,20 +70,21 @@
 &lt;p&gt;A summary of PnPNet workflow &lt;a href=&#34;#1&#34;&gt;[1]&lt;/a&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;h2 id=&#34;3d-object-detection-module&#34;&gt;3D Object detection module&lt;/h2&gt;
-&lt;p&gt;The detection module takes multi-sweep LiDAR point cloud representation in birds-eye-view and an HD map as input. Optionally, geometric and semantic information of the HD map can also be used. 2D convolutional neural network-based backbone is applied to the input, which generates the intermediate BEV features that will be used in downstream tasks. A convolutional detection header is then used on the intermediate features to create dense object detections at each time step.&lt;/p&gt;
+&lt;p&gt;The detection module takes multi-sweep LiDAR point cloud representation in birds-eye-view and an HD map as input. Optionally, geometric and semantic information of the HD map can also be used. 2D convolutional neural network-based backbone with multi-scale feature fusion is applied to the input, which generates the intermediate BEV features. A convolutional detection header is then used on the intermediate features to create dense object detections at each time step. We maintain a database of intermediate features at each time step because they will be needed to in the tracking module downstream.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;3dmodule.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;Workflow of the 3D detection module&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;h2 id=&#34;discrete-continuous-tracking-module&#34;&gt;Discrete-Continuous Tracking module&lt;/h2&gt;
-&lt;p&gt;As discussed in the related works, there are two separate challenges in multi-object tracking. Previous works mostly focus on the discrete problem of data association but PnPNet also takes the continuous problem of trajectory estimation into account. The paper argues that it helps to prevent association errors from accumulating over time and reduces the variance in motion history. To that end, it proposes a two-stage tracking framework. To use the framework, rich and concise trajectory level object representation need to be learned.&lt;/p&gt;
+&lt;p&gt;As discussed in the related works, there are two separate challenges in multi-object tracking. Previous works mostly focus on the discrete problem of data association but PnPNet also takes the continuous problem of trajectory estimation into account. The paper argues that it helps to prevent association errors from accumulating over time and reduces the variance in motion history. To that end, it proposes a two-stage tracking framework. To use the framework, rich and concise trajectory level object representation needs to be learned.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;trackingrep.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;Trajectory level representation generation&lt;/p&gt;
 &lt;/figcaption&gt;
-&lt;p&gt;The representation learning problem is formulated as a sequence modeling problem. We use the intermediate FEV features from the backbone network and the location information of each object at time t to run a Bilinear Interpolation. This output is regarded as the representation of the motion of each object from the start frame to the current frame. Along with this, the absolute velocities of each object are passed into an MLP/feed-forward network. The merged features from this FF network are then used as the sequential input for our LSTM. This LSTM hidden state is our trajectory level representation at each time step.&lt;/p&gt;
+&lt;p&gt;The representation learning problem is formulated as a sequence modeling problem. We use the intermediate FEV features from the backbone network and the location information of each object at time t to run a Bilinear Interpolation. Note that the location information is obtained from a database of older trajectories. This output is regarded as the representation of the motion of each object from the start frame to the current frame. Along with this, the absolute velocities of each object are passed into an MLP/feed-forward network.&lt;/p&gt;
+&lt;p&gt;The merged features from this FF network are then used as the sequential input for our LSTM. This LSTM hidden state is our trajectory level representation at each time step.&lt;/p&gt;
 &lt;h3 id=&#34;data-association&#34;&gt;Data Association&lt;/h3&gt;
-&lt;p&gt;The first stage of the tracking framework is the discrete tracker. At time t, given N&lt;sub&gt;t&lt;/sub&gt; detections and M&lt;sub&gt;t-1&lt;/sub&gt; trajectories, it tries to determine the associations between them. This association problem is formulated as a bipartite graph matching problem. As a result, one-to-one matching is guaranteed. The edge values for our bipartite matching problem are the affinity values, which represent how likely is a track M&lt;sub&gt;t-1&lt;/sub&gt; to belong to detection N&lt;sub&gt;t&lt;/sub&gt;. The affinity matrix :
+&lt;p&gt;The first stage of the tracking framework is the discrete tracker. We obtain the dense detections from the 3D detection module upstream and the trajectories from the database of older tracks. At time t, given N&lt;sub&gt;t&lt;/sub&gt; detections and M&lt;sub&gt;t-1&lt;/sub&gt; trajectories, it tries to determine the associations between them. This association problem is formulated as a bipartite graph matching problem. As a result, one-to-one matching is guaranteed. The edge values for our bipartite matching problem are the affinity values, which represent how likely is a track M&lt;sub&gt;t-1&lt;/sub&gt; to belong to detection N&lt;sub&gt;t&lt;/sub&gt;. The affinity matrix :
 $$
 C_{i,j} =
 \begin{cases}
@@ -88,7 +93,11 @@ MLP_{unary}(f(D_{i}^t)) &amp;amp; if\ j = M_{t−1} + i \\&lt;br&gt;
 −inf &amp;amp; otherwise \\&lt;br&gt;
 \end{cases}    &lt;br&gt;
 $$
-The affinity values are calculated with binary or unary MLPs. If we have more or equal number of tracks at the previous step than detections at this step, we use the binary MLP. Otherwise, the unary MLP is used. This bipartite system is solved optimally using the Hungarian algorithm. We use single object tracking for older unmatched tracks. Combining results from bipartite matching and SOT yields a final set of tracks P&lt;sub&gt;t&lt;/sub&gt;.&lt;/p&gt;
+The affinity values are calculated with binary or unary MLPs. If we have more or equal number of tracks at the previous step than detections at this step, we use the binary MLP. Otherwise, the unary MLP is used. This bipartite system is solved optimally using the Hungarian algorithm. We use single object tracking for older unmatched tracks. Combining results from bipartite matching and SOT yields a final set of unrefined tracks P&lt;sub&gt;t&lt;/sub&gt;. This set of unrefined tasks have the candidates for updating the database of older tracks to be used in the future time steps.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;association.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;figcaption&gt;
+&lt;p&gt;Associating tracks with detections&lt;/p&gt;
+&lt;/figcaption&gt;
 &lt;h4 id=&#34;single-object-tracking&#34;&gt;Single object tracking&lt;/h4&gt;
 &lt;p&gt;The single object tracker used in the PnPNet paper follows nearly the same methodology as the Siamese tracker &lt;a href=&#34;#14&#34;&gt;[14]&lt;/a&gt;. The Siamese tracker has two networks. One of these twin networks receives an exemplar image as input, another one receives a search image as input. The task for the twin network is to try and find the exemplar image within the search image.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;sot.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
@@ -117,14 +126,24 @@ id7((&amp;quot;N&amp;lt;sub&amp;gt;3&amp;lt;/sub&amp;gt;&amp;quot;))-- &amp;quot
 $$
 score_{i}, \Delta u_{i}^{t-T_0+1:t}, \Delta v_{i}^{t-T_0+1:t} = MLP_{refine}(h(P_{i}^t))
 $$
-Using these confidence scores, a non-maximal suppression is applied and only top M&lt;sub&gt;t&lt;/sub&gt; tracks are accepted. Other tracks are discarded as false positives.&lt;/p&gt;
+Using these confidence scores, a non-maximal suppression is applied and only top M&lt;sub&gt;t&lt;/sub&gt; out of P&lt;sub&gt;t&lt;/sub&gt; tracks are accepted. Other tracks are discarded as false positives. The database of trajectories is then updated with this accepted tracks set.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;trajectory.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;figcaption&gt;
+&lt;p&gt;Trajectory estimation sub-module.&lt;/p&gt;
+&lt;/figcaption&gt;
 &lt;h2 id=&#34;motion-forecasting-module&#34;&gt;Motion Forecasting module&lt;/h2&gt;
-&lt;p&gt;Earlier joint perception and prediction models design the prediction module as another convolutional header. However, PnPnet puts tracking on the detection backbone and creates object trajectory representation. This trajectory representation is then passed through an MLP to estimate motion prediction for each object we are tracking. 
+&lt;p&gt;Earlier joint perception and prediction models design the prediction module as another convolutional header. However, PnPnet puts tracking on the detection backbone and creates object trajectory representation as LSTM hidden states. These hidden states are then passed through an MLP to estimate motion prediction for each object we are tracking in each time step. 
 $$
 \Delta u_{i}^{t:t+\Delta T}, \Delta v_{i}^{t:t+\Delta T} = MLP_{refine}(h(P_{i}^t))
 $$
 Here $\Delta T$ is a parameter of the model that denotes the prediction horizon.&lt;/p&gt;
 &lt;h2 id=&#34;end-to-end-training&#34;&gt;End-to-End Training&lt;/h2&gt;
+&lt;p&gt;As the model has a lot of moving parts, it is hard to visualize how the individual modules interact with each other. So here is an illustration that summarizes the workflow:
+&lt;img src=&#34;e2etrain.jpeg&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;figcaption&gt;
+&lt;p&gt;Each rectangular box represents a major process. These boxes are color coded according to their individual modules. A database of tracks is represented with the cylindrical icon.&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;p&gt;As we can see from the figure, PnPNet only has one set of inputs and one set of outputs. This means it can be trained end-to-end.&lt;/p&gt;
 &lt;p&gt;To train PnPNet end-to-end, a multi-task loss is calculated from the individual losses of its three modules. 
 $$
 L = L_{detect}+ L_{track} + L_{predict}
@@ -205,12 +224,13 @@ Here N&lt;sub&gt;i,j&lt;/sub&gt; is the total number of positive and negative pa
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;p&gt;Earlier works in the realm of perception and prediction of autonomous driving have somewhat overlooked the contribution of trajectory information for future predictions. Although recent works do capitalize on the use of joint models, they leave tracking out of the loop. Following the footstep of these recent developments, PnPNet proposes a novel end-to-end training framework for perception and prediction while taking tracking into consideration. They also introduce a new tracking framework that can be looped into classic detection-prediction stacks. Their proposed improvements are then validated on different datasets and compared with other leading models in this paradigm. Finally, they show significant improvement in all three tasks as well as end-to-end performance.&lt;/p&gt;
 &lt;h2 id=&#34;personal-remarks&#34;&gt;Personal Remarks&lt;/h2&gt;
-&lt;h4 id=&#34;using-other-recurrent-units&#34;&gt;Using other recurrent units&lt;/h4&gt;
-&lt;p&gt;PnPNet uses an LSTM unit in the tracking module. However, as we know LSTMs need quite a bit of computation resources. In future works, other less expensive recurrent units can be explored for the same task. For example, GRU units &lt;a href=&#34;#20&#34;&gt;[20]&lt;/a&gt; are computationally less expensive and have been proven to be comparable in terms of performance &lt;a href=&#34;#21&#34;&gt;[21]&lt;/a&gt;.&lt;/p&gt;
-&lt;h4 id=&#34;attention-mechanism&#34;&gt;Attention mechanism&lt;/h4&gt;
-&lt;p&gt;Recently many sequence modeling tasks are leveraging the attention mechanism. As we define our tracking as a sequential problem, it may be useful to apply self-attention on top of the recurrent unit outputs. Although this is not a pure sequence problem, self-attention may refine and provide importance to better trajectory features. Also, built-in attention &lt;a href=&#34;#22&#34;&gt;[22]&lt;/a&gt; can be applied to the 2D-Convolutional backbone of the 3D detection algorithm.&lt;/p&gt;
-&lt;h4 id=&#34;excerpts-from-the-qa&#34;&gt;Excerpts from the Q&amp;amp;A&lt;/h4&gt;
-&lt;p&gt;In the paper, the authors limit the number of detection and tracks to a maximum of 50. But the PnPNet considers distances up to 100 meters. But, on busy roads usually far more moving objects within close proximity. The only way for PnPNet to consider this is to increase the &lt;em&gt;N&lt;/em&gt; and &lt;em&gt;M&lt;/em&gt; parameters. However, this again results in a massive number of computations for the Hungarian algorithm. The paper doesn&#39;t take this problem into account. Perhaps there could be more research in the tracking module so that the computation does not increase in the magnitude of NxM.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In the paper, the authors assume the maximum number of detection and tracks to be 50. But, on busy roads usually there are far more moving objects within close proximity. The only way for PnPNet to consider this is to increase the &lt;em&gt;N&lt;/em&gt; and &lt;em&gt;M&lt;/em&gt; parameters. However, this again results in a massive number of computations for the Hungarian algorithm. The paper doesn&#39;t take this problem into account.&lt;/li&gt;
+&lt;li&gt;The authors only store tracks up to 16 older frames to maintain real-time performance. However, ablation studies show that, keeping tracks up to 32 frames achieves better prediction result. This points to the fact that this model has some performance-efficiency trade-off.&lt;/li&gt;
+&lt;li&gt;The predecessor of PnPNet, FaF&lt;a href=&#34;#12&#34;&gt;[12]&lt;/a&gt; did not have an explicit tracking module, but still outperformed the Hungarian matching. PnPNet, however, incorporates the Hungarian algorithm in it&#39;s design and outperforms FaF. We can posit that continuous track refinement has helped in the association task as well.&lt;/li&gt;
+&lt;li&gt;PnPNet uses an LSTM unit in the tracking module. However, as we know LSTMs need quite a bit of computation resources. In future works, other less expensive recurrent units can be explored for the same task. For example, GRU units &lt;a href=&#34;#20&#34;&gt;[20]&lt;/a&gt; are computationally less expensive and have been proven to be comparable in terms of performance &lt;a href=&#34;#21&#34;&gt;[21]&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Recently many sequence modeling tasks are leveraging the attention mechanism. As we define our tracking as a sequential problem, it may be useful to apply self-attention on top of the recurrent unit outputs. Although this is not a pure sequence problem, self-attention may refine and provide importance to better trajectory features. Also, built-in attention &lt;a href=&#34;#22&#34;&gt;[22]&lt;/a&gt; can be applied to the 2D-Convolutional backbone of the 3D detection algorithm.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
 &lt;p id=&#34;1&#34;&gt;
 [1] Ming Liang, Bin Yang, Wenyuan Zeng, Yun Chen, Rui Hu, Sergio Casas, Raquel Urtasun, &#34;PnPNet: End-to-End Perception and Prediction with Tracking in the Loop&#34;, in CVPR, 2020.
